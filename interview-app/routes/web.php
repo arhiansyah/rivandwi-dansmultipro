@@ -28,3 +28,4 @@ Route::post('register', [RegisterController::class, 'actionregister'])->name('ac
 Route::get('register', [RegisterController::class, 'register'])->name('register');
 Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('actionregister', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
+Route::get('/search', [JobController::class, 'search'])->name('searchJob')->middleware('auth');

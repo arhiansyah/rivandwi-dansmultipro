@@ -11,6 +11,19 @@ use Illuminate\Support\Facades\Http;
 
 class JobController extends Controller
 {
+
+    public function search(Request $request)
+    {
+        $input = $request->all();
+        $input['description'] = strtolower($request->description);
+        $input['location'] = strtolower($request->location);
+
+        $response = Http::get('http://dev3.dansmultipro.co.id/api/recruitment/positions.json?description=' . $input['description'] . '&location=' . $input['location']);
+        $jobs = $response->collect();
+        // dd($jobs);
+        $data['jobs'] = (object) $jobs;
+        return view('page.jobs', $data);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,8 +33,9 @@ class JobController extends Controller
     {
         $response = Http::get('http://dev3.dansmultipro.co.id/api/recruitment/positions.json');
         $jobs = $response->collect();
-        $data['jobs'] = $jobs->take(10);
-        $data['jobs'] = (object) $data['jobs'];
+        // dd($data['jobs']);
+        $data['jobs'] = (object) $jobs;
+        // $data['jobs'] = $data['jobs']->paginate(10);
         foreach ($data['jobs'] as $key => $value) {
             $data['jobCarbon'] = Carbon::parse($value['created_at'])->diffForHumans();
         }

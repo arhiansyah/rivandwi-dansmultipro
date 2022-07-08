@@ -4,14 +4,14 @@
   <div class="row">
       <div class="col-12">
           <h1>Github Jobs</h1>
-          <form class="row gy-2 gx-3 align-items-center mb-3">
+          <form class="row gy-2 gx-3 align-items-center mb-3" action="/search" method="get">
             <div class="col-4">
               <label for="autoSizingInput"> <b>Job Description</b></label>
-              <input type="text" class="form-control" id="autoSizingInput" placeholder="Jane Doe">
+              <input type="text" name="description" class="form-control" id="autoSizingInput" placeholder="Jane Doe">
             </div>
             <div class="col-4">
               <label for="autoSizingInput"><b>Location</b></label>
-              <input type="text" class="form-control" id="autoSizingInput" placeholder="Jane Doe">
+              <input name="location" type="text" class="form-control" id="autoSizingInput" placeholder="Jane Doe">
             </div>
             
             <div class="col-2 mt-4">
@@ -34,15 +34,17 @@
                     {{-- <p>{{$jobs[0]['title']}}</p> --}}
                     @foreach ($jobs as $key => $j)
                         {{-- <p>{{ $j->id }}</p> --}}
-                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <li class="list-group-item">
                             <div class="ms-2">
-                                <div class="d-flex  justify-content-between">
-                                  <h5 class="mb-1">{{$j['title']}}</h5>
-                                  <small class="ms-3">{{ $j['location'] }}</small>
-                                </div>
-                                <div class="d-flex  justify-content-between">
+                                <div class="d-flex justify-content-between w-100">
+                                  <div>
+                                    <h5 class="mb-1">{{$j['title']}}</h5>
                                     <p class="mb-1">{{$j['company']}} - <span style="color: green"> <b>{{$j['type']}}</b> </span></p>
-                                    <small class="ms-3">{{\Carbon\Carbon::parse($j['created_at'])->diffForHumans()}}</small>
+                                  </div>
+                                  <div class="d-flex justify-content-end">
+                                    <p class="ms-3">{{ $j['location'] }}</p>
+                                    <p class="ms-3"><b>{{\Carbon\Carbon::parse($j['created_at'])->diffForHumans()}}</b></p>
+                                  </div>
                                 </div>
                             </div>
                         </li>
@@ -50,15 +52,7 @@
                         <hr>
                     @endforeach
               </div>
-              <nav aria-label="Page navigation example" style="margin-left: 75%">
-                <ul class="pagination">
-                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-              </nav>
+              {{-- {{ $jobs->links() }} --}}
           </div>
       </div>
   </div>

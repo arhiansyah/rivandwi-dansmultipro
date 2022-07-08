@@ -18,7 +18,7 @@
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="autoSizingCheck">
                 <label class="form-check-label" for="autoSizingCheck">
-                  Remember me
+                  Full Time
                 </label>
               </div>
             </div>
@@ -41,9 +41,9 @@
                                     <h5 class="mb-1">{{$j['title']}}</h5>
                                     <p class="mb-1">{{$j['company']}} - <span style="color: green"> <b>{{$j['type']}}</b> </span></p>
                                   </div>
-                                  <div class="d-flex justify-content-end">
-                                    <p class="ms-3">{{ $j['location'] }}</p>
-                                    <p class="ms-3"><b>{{\Carbon\Carbon::parse($j['created_at'])->diffForHumans()}}</b></p>
+                                  <div>
+                                    <p class="">{{ $j['location'] }}</p>
+                                    <p class="">{{\Carbon\Carbon::parse($j['created_at'])->diffForHumans()}}</p>
                                   </div>
                                 </div>
                             </div>

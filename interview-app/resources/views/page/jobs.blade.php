@@ -33,8 +33,7 @@
               <div class="card-body">
                     {{-- <p>{{$jobs[0]['title']}}</p> --}}
                     @foreach ($jobs as $key => $j)
-                        {{-- <p>{{ $j->id }}</p> --}}
-                        <li class="list-group-item">
+                        <li value="{{ $j['id'] }}" onclick="detailJobs('{{$j['id']}}')" class="list-group-item">
                             <div class="ms-2">
                                 <div class="d-flex justify-content-between w-100">
                                   <div>
@@ -57,3 +56,12 @@
       </div>
   </div>
 @endsection
+@yield('script')
+<script>
+  // document.getElementById("listJobs").addEventListener("click", detailJobs);
+  
+  function detailJobs($id) {
+    let id = $id;
+    location.replace("{{ url('jobs') }}/" + id);
+  }
+</script>

@@ -71,7 +71,9 @@ class JobController extends Controller
      */
     public function show($id)
     {
-        //
+        $response = Http::get('http://dev3.dansmultipro.co.id/api/recruitment/positions/' . $id);
+        $data['jobs'] = $response->collect();
+        return view('page.detail', $data);
     }
 
     /**
